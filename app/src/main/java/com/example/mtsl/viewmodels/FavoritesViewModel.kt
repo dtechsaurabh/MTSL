@@ -7,40 +7,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.mtsl.db.FavoriteMovieEntity
 import com.example.mtsl.db.FavoritesDatabase
-import com.example.mtsl.repositorys.FavoritesRepository
+import com.example.mtsl.db.MovieDatabase
+import com.example.mtsl.models.Movie
+import com.example.mtsl.repositorys.FavoriteRepository
 
 import kotlinx.coroutines.launch
 
-class FavoritesViewModel(application: Application) : AndroidViewModel(application) {
+class FavoriteViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository: FavoritesRepository
-    val favoriteMovies: LiveData<List<FavoriteMovieEntity>>
+    private val movieDao = MovieDatabase.getDatabase(application).movieDao()
+    private val repository: FavoriteRepository = FavoriteRepository(movieDao)
 
-    init {
-        val favoritesDao = FavoritesDatabase.getInstance(application).favoritesDao()
-        repository = FavoritesRepository(favoritesDao)
-        favoriteMovies = repository.favoriteMovies
-    }
-
-    fun addFavorite(movie: FavoriteMovieEntity) = viewModelScope.launch {
-        repository.addFavorite(movie)
-    }
-
-    fun removeFavorite(movie: FavoriteMovieEntity) = viewModelScope.launch {
-        repository.removeFavorite(movie)
-    }
-
-    fun isFavorite(movieId: Int, callback: (Boolean) -> Unit) {
-        viewModelScope.launch {
-            callback(repository.isFavorite(movieId))
-        }
-    }
-
-    fun toggleFavorite(movie: FavoriteMovieEntity) = viewModelScope.launch {
-        if (repository.isFavorite(movie.id)) {
-            repository.removeFavorite(movie)
-        } else {
-            repository.addFavorite(movie)
-        }
-    }
+    val favoriteMovies: LiveData<List<Movie>> = repository.getFavoriteMovies()
 }

@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-//package com.example.mtsl.db
-//
-//import androidx.room.Dao
-//import androidx.room.Delete
-//import androidx.room.Insert
-//import androidx.room.OnConflictStrategy
-//import androidx.room.Query
-//
-//@Dao
-//interface MovieDao {
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun insertMovie(movie: MovieEntity)
-//
-//    @Delete
-//    suspend fun deleteMovie(movie: MovieEntity)
-//
-//    @Query("SELECT * FROM favorite_movies")
-//    suspend fun getAllMovies(): List<MovieEntity>
-//}
-=======
 package com.example.mtsl.db
 
 import androidx.room.Dao
@@ -26,16 +5,22 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.mtsl.models.Movie
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovie(movie: MovieEntity)
+    suspend fun insertMovie(movie: Movie)
 
     @Delete
-    suspend fun deleteMovie(movie: MovieEntity)
+    suspend fun deleteMovie(movie: Movie)
 
-    @Query("SELECT * FROM favorite_movies")
-    suspend fun getAllMovies(): List<MovieEntity>
+    @Query("SELECT * FROM movies WHERE id = :movieId")
+    suspend fun getMovieById(movieId: Int): Movie?
+
+    @Query("SELECT * FROM movies WHERE isFavorite = 1")
+    fun getFavoriteMovies(): Flow<List<Movie>>
+
+
 }
->>>>>>> 31c47be (Initial commit)

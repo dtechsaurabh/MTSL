@@ -2,10 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-<<<<<<< HEAD
-=======
     id("kotlin-parcelize")
->>>>>>> 31c47be (Initial commit)
     id("kotlin-kapt") // Ensure this is present
 
 }
@@ -96,11 +93,8 @@ dependencies {
 
     // Glide for Image Loading
     implementation(libs.glide)
-<<<<<<< HEAD
      kapt(libs.glide.compiler)
-=======
     kapt(libs.glide.compiler)
->>>>>>> 31c47be (Initial commit)
 
     // RecyclerView for displaying lists
     implementation(libs.recyclerview)

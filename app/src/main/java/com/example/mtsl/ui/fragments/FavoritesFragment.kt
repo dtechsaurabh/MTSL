@@ -5,28 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mtsl.databinding.FragmentFavoritesBinding
-<<<<<<< HEAD
-import com.example.mtsl.db.FavoriteMovieEntity
-import com.example.mtsl.models.Movie
-import com.example.mtsl.ui.adapter.FavoritesAdapter
-import com.example.mtsl.viewmodels.FavoritesViewModel
-=======
->>>>>>> 31c47be (Initial commit)
+import com.example.mtsl.ui.adapter.FavoriteAdapter
+import com.example.mtsl.viewmodels.FavoriteViewModel
 
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
-    private val binding get() = _binding!!
-<<<<<<< HEAD
-    private val viewModel: FavoritesViewModel by viewModels()
-    private lateinit var favoritesAdapter: FavoritesAdapter
-=======
-
-
->>>>>>> 31c47be (Initial commit)
+    private val binding get() = _binding!!  // Use safe access
+    private lateinit var favoriteAdapter: FavoriteAdapter
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,76 +32,34 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-<<<<<<< HEAD
-        // Setup RecyclerView
-        favoritesAdapter = FavoritesAdapter(
+        // ✅ Initialize ViewModel
+        favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
+
+        setupRecyclerView()
+        observeFavorites()
+    }
+
+    private fun setupRecyclerView() {
+        favoriteAdapter = FavoriteAdapter(
             mutableListOf(),
             onMovieClick = { movie ->
-                // Handle movie click (Navigate to details)
-            },
-            onFavoriteClick = { movie ->
-                if (movie.isFavorite) {
-                    // Remove from favorites
-//                    viewModel.removeFavorite(
-//                        FavoriteMovieEntity(
-//                            movie.id, movie.title, movie.overview, movie.release_date,
-//                            movie.poster_path, movie.vote_average, false
-//                        )
-//                    )
-                } else {
-                    // Add to favorites
-//                    viewModel.addFavorite(
-//                        FavoriteMovieEntity(
-//                            movie.id, movie.title, movie.overview, movie.release_date,
-//                            movie.poster_path, movie.vote_average, true
-//                        )
-//                    )
-                }
+                Toast.makeText(requireContext(), "Selected: ${movie.title}", Toast.LENGTH_SHORT).show()
             }
-
         )
 
-        binding.recyclerViewFavorites.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = favoritesAdapter
-        }
+        binding.recyclerViewFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerViewFavorites.adapter = favoriteAdapter
+    }
 
-        // Observe favorite movies
-        viewModel.favoriteMovies.observe(viewLifecycleOwner) { favoriteMovies ->
-            if (favoriteMovies.isNullOrEmpty()) {
-                binding.recyclerViewFavorites.visibility = View.GONE
-                binding.tvEmptyMessage.visibility = View.VISIBLE
-            } else {
-                binding.recyclerViewFavorites.visibility = View.VISIBLE
-                binding.tvEmptyMessage.visibility = View.GONE
-
-
-//                favoritesAdapter.updateMovies(favoriteMovies.map {
-//                    Movie(
-//                        it.id,
-//                        it.title,
-//                        it.poster_path,
-//                        it.release_date,
-//                        it.overview, // Correct field
-//                        "0.0", // Placeholder for vote_average (add the actual value if available)
-//                        true
-//                    )
-//                })
-            }
+    private fun observeFavorites() {
+        favoriteViewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
+            val safeMovies = movies ?: emptyList() // ✅ Ensure no null crash
+            favoriteAdapter.updateMovies(safeMovies)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        _binding = null  // ✅ Prevent memory leaks
     }
-=======
-
-
-    }
-
-
-
-
->>>>>>> 31c47be (Initial commit)
 }

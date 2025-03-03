@@ -2,23 +2,16 @@ package com.example.mtsl.repositorys
 
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import com.example.mtsl.db.FavoriteMovieEntity
 import com.example.mtsl.db.FavoritesDao
+import com.example.mtsl.db.MovieDao
+import com.example.mtsl.models.Movie
 
 
-class FavoritesRepository(private val favoritesDao: FavoritesDao) {
+class FavoriteRepository(private val movieDao: MovieDao) {
 
-    val favoriteMovies: LiveData<List<FavoriteMovieEntity>> = favoritesDao.getFavoriteMovies()
-
-    suspend fun addFavorite(movie: FavoriteMovieEntity) {
-        favoritesDao.addFavorite(movie)
-    }
-
-    suspend fun removeFavorite(movie: FavoriteMovieEntity) {
-        favoritesDao.removeFavorite(movie)
-    }
-
-    suspend fun isFavorite(movieId: Int): Boolean {
-        return favoritesDao.isFavorite(movieId) > 0
+    fun getFavoriteMovies(): LiveData<List<Movie>> {
+        return movieDao.getFavoriteMovies().asLiveData()
     }
 }
