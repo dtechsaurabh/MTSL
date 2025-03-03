@@ -1,6 +1,7 @@
 package com.example.mtsl.ui.activity.movies
 
 import android.os.Bundle
+<<<<<<< HEAD
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.mtsl.R
@@ -8,10 +9,34 @@ import com.example.mtsl.databinding.ActivityMovieBinding
 import com.example.mtsl.ui.fragments.FavoritesFragment
 import com.example.mtsl.ui.fragments.MovieFragment
 import com.example.mtsl.ui.fragments.SearchFragment
+=======
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mtsl.R
+import com.example.mtsl.databinding.ActivityMovieBinding
+import com.example.mtsl.ui.adapter.MovieAdapter
+import com.example.mtsl.viewmodels.MovieViewModel
+
+
+import com.example.mtsl.repositorys.MovieRepository
+import com.example.mtsl.ui.fragments.FavoritesFragment
+import com.example.mtsl.ui.fragments.MovieFragment
+import com.example.mtsl.ui.fragments.SearchFragment
+
+import com.example.mtsl.viewmodels.MovieViewModelFactory
+>>>>>>> 31c47be (Initial commit)
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MovieActivity : AppCompatActivity() {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 31c47be (Initial commit)
     private lateinit var binding: ActivityMovieBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

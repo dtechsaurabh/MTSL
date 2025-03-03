@@ -8,17 +8,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mtsl.databinding.FragmentFavoritesBinding
+<<<<<<< HEAD
 import com.example.mtsl.db.FavoriteMovieEntity
 import com.example.mtsl.models.Movie
 import com.example.mtsl.ui.adapter.FavoritesAdapter
 import com.example.mtsl.viewmodels.FavoritesViewModel
+=======
+>>>>>>> 31c47be (Initial commit)
 
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
+<<<<<<< HEAD
     private val viewModel: FavoritesViewModel by viewModels()
     private lateinit var favoritesAdapter: FavoritesAdapter
+=======
+
+
+>>>>>>> 31c47be (Initial commit)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +39,7 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+<<<<<<< HEAD
         // Setup RecyclerView
         favoritesAdapter = FavoritesAdapter(
             mutableListOf(),
@@ -93,4 +102,13 @@ class FavoritesFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+=======
+
+
+    }
+
+
+
+
+>>>>>>> 31c47be (Initial commit)
 }

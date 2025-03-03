@@ -18,14 +18,21 @@
         android:theme="@style/Theme.MTSL"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".ui.fragments.MovieFragment"
             android:exported="false"
             android:theme="@style/Theme.MTSL" />
         <activity
+=======
+>>>>>>> 31c47be (Initial commit)
             android:name=".ui.activity.FavoritesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.movies.MovieDetailsActivity"
+<<<<<<< HEAD
+=======
+            android:theme="@style/Theme.MyApp"
+>>>>>>> 31c47be (Initial commit)
             android:exported="false" />
         <activity
             android:name=".MainActivity"

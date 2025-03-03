@@ -9,7 +9,10 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 31c47be (Initial commit)
     }
 }
 dependencyResolutionManagement {

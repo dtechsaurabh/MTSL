@@ -10,5 +10,11 @@
     <color name="bottom_nav_icon">#FFFFFF</color>
     <color name="bottom_nav_text">#FFFFFF</color>
     <color name="bottom_nav_background">#1E1E2E</color>
+<<<<<<< HEAD
+=======
+    <color name="black_overlay">#80000000</color>
+    <color name="accentColor">#FF4081</color>
+
+>>>>>>> 31c47be (Initial commit)
 </resources>
 

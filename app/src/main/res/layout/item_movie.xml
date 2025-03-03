@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -33,12 +34,69 @@
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray"/>
 
+=======
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:id="@+id/carditem"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_background"
+    android:elevation="6dp">
+
+    <RelativeLayout
+        android:background="@drawable/gradient_background"
+
+        android:id="@+id/axisRelative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            android:layout_width="320dp"
+            android:layout_height="280dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/movie_poster"/>
+
+>>>>>>> 31c47be (Initial commit)
         <ImageButton
             android:id="@+id/favoriteButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_favorite_border"
+<<<<<<< HEAD
             android:layout_gravity="end"
             android:background="?attr/selectableItemBackgroundBorderless"/>
     </LinearLayout>
+=======
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:background="@color/black_overlay"
+            android:layout_alignBottom="@id/moviePoster">
+
+            <TextView
+                android:id="@+id/movieTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/movieReleaseYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+>>>>>>> 31c47be (Initial commit)
 </androidx.cardview.widget.CardView>

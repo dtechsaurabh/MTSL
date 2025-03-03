@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+<<<<<<< HEAD
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mtsl.databinding.FragmentActivityMovieBinding
 import com.example.mtsl.ui.adapter.MovieAdapter
@@ -19,6 +20,17 @@ import com.example.mtsl.viewmodels.MovieViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+=======
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.mtsl.databinding.FragmentActivityMovieBinding
+import com.example.mtsl.repositorys.MovieRepository
+import com.example.mtsl.ui.adapter.MovieAdapter
+import com.example.mtsl.utils.NetworkUtils
+import com.example.mtsl.utils.SearchHelper
+import com.example.mtsl.utils.UIUtils
+import com.example.mtsl.viewmodels.MovieViewModel
+import com.example.mtsl.viewmodels.MovieViewModelFactory
+>>>>>>> 31c47be (Initial commit)
 
 class MovieFragment : Fragment() {
 
@@ -26,7 +38,11 @@ class MovieFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var movieAdapter: MovieAdapter
     private val movieViewModel: MovieViewModel by viewModels {
+<<<<<<< HEAD
         MovieViewModelFactory(requireContext())
+=======
+        MovieViewModelFactory(MovieRepository()) // No Hilt, manually creating repository
+>>>>>>> 31c47be (Initial commit)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -42,6 +58,7 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+<<<<<<< HEAD
       //  setupSearchView()
         observeMovies()
         fetchMovies()
@@ -59,6 +76,33 @@ class MovieFragment : Fragment() {
             }
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+=======
+        SearchHelper.setupSearchView(
+            binding,
+            binding.searchView,
+            binding.progressBar,
+            binding.loadingText,
+            movieViewModel
+        )
+
+        observeMovies()
+        fetchMovies()
+
+
+        // Fetch movies when the activity starts
+    }
+
+
+    private fun setupRecyclerView() {
+        movieAdapter = MovieAdapter(
+            mutableListOf(),
+            onMovieClick = { movie ->
+                Toast.makeText(requireContext(), "Selected: ${movie.title}", Toast.LENGTH_SHORT).show()
+            }
+        )
+
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2) // 2 columns grid
+>>>>>>> 31c47be (Initial commit)
         binding.recyclerView.adapter = movieAdapter
     }
 
@@ -66,13 +110,23 @@ class MovieFragment : Fragment() {
         movieViewModel.movies.observe(viewLifecycleOwner) { movies ->
             Log.d("MovieFragmentLog", "Movies updated: ${movies.size}")
 
+<<<<<<< HEAD
             UIUtils.hideLoading(binding)
+=======
+            UIUtils.hideLoading(binding, binding.progressBar, binding.loadingText)
+
+>>>>>>> 31c47be (Initial commit)
 
             if (movies.isNotEmpty()) {
                 movieAdapter.updateMovies(movies.toMutableList())
             } else {
                 Log.d("MovieFragmentLog", "No movies found in ViewModel")
+<<<<<<< HEAD
                 UIUtils.showNoMoviesFound(binding)
+=======
+                UIUtils.showNoMoviesFound(binding, binding.progressBar, binding.loadingText)
+
+>>>>>>> 31c47be (Initial commit)
             }
         }
     }
@@ -83,17 +137,30 @@ class MovieFragment : Fragment() {
 
         if (NetworkUtils.isInternetAvailable(requireContext())) {
             Log.d("MovieFragmentLog", "Internet is available, fetching movies...")
+<<<<<<< HEAD
             UIUtils.showLoading(binding)
+=======
+            UIUtils.showLoading(binding, binding.progressBar, binding.loadingText)
+
+>>>>>>> 31c47be (Initial commit)
             movieViewModel.fetchMovies()
         } else {
             Log.d("MovieFragmentLog", "No internet connection")
             Toast.makeText(requireContext(), "No Internet Connection!", Toast.LENGTH_LONG).show()
+<<<<<<< HEAD
             UIUtils.showNoInternet(binding)
         }
     }
 
 
 
+=======
+            UIUtils.showNoInternet(binding, binding.progressBar, binding.loadingText)
+
+        }
+    }
+
+>>>>>>> 31c47be (Initial commit)
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
