@@ -6,18 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mtsl.databinding.FragmentFavoritesBinding
+import com.example.mtsl.models.Movie
 import com.example.mtsl.ui.adapter.FavoriteAdapter
 import com.example.mtsl.viewmodels.FavoriteViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
-    private val binding get() = _binding!!  // Use safe access
+    private val binding get() = _binding!!
     private lateinit var favoriteAdapter: FavoriteAdapter
     private lateinit var favoriteViewModel: FavoriteViewModel
 
@@ -32,7 +34,6 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ✅ Initialize ViewModel
         favoriteViewModel = ViewModelProvider(this)[FavoriteViewModel::class.java]
 
         setupRecyclerView()
@@ -44,6 +45,9 @@ class FavoritesFragment : Fragment() {
             mutableListOf(),
             onMovieClick = { movie ->
                 Toast.makeText(requireContext(), "Selected: ${movie.title}", Toast.LENGTH_SHORT).show()
+            },
+            onRemoveFavorite = { movie ->
+                removeFavoriteMovie(movie)
             }
         )
 
@@ -53,13 +57,26 @@ class FavoritesFragment : Fragment() {
 
     private fun observeFavorites() {
         favoriteViewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
-            val safeMovies = movies ?: emptyList() // ✅ Ensure no null crash
+            val safeMovies = movies ?: emptyList()
             favoriteAdapter.updateMovies(safeMovies)
+
+            // ✅ Show empty message when list is empty
+            if (safeMovies.isEmpty()) {
+                binding.tvEmptyMessage.visibility = View.VISIBLE
+            } else {
+                binding.tvEmptyMessage.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun removeFavoriteMovie(movie: Movie) {
+        CoroutineScope(Dispatchers.IO).launch {
+            favoriteViewModel.removeFavorite(movie) // Call ViewModel function
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null  // ✅ Prevent memory leaks
+        _binding = null
     }
 }

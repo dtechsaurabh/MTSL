@@ -21,11 +21,6 @@ interface ApiInterface {
         @Query("query") query: String
     ): Call<MovieResponse>
 
-//    @GET("movie/{movie_id}")
-//    fun getMovieDetails(
-//        @Path("movie_id") movieId: Int,
-//        @Query("api_key") apiKey: String = ApiConstants.API_KEY
-//    ): Call<MovieDetails>
 
     @GET("movie/{movie_id}")
     fun getMovieDetails(

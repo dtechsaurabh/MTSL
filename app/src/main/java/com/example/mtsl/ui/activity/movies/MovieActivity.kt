@@ -33,7 +33,6 @@ class MovieActivity : AppCompatActivity() {
 
         setupBottomNavigation()
 
-        // Default fragment on launch
         if (savedInstanceState == null) {
             loadFragment(MovieFragment())
         }
