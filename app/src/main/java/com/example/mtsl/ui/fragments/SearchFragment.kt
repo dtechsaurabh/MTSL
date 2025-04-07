@@ -17,17 +17,18 @@ import com.example.mtsl.utils.SearchHelper
 import com.example.mtsl.viewmodels.MovieViewModel
 import com.example.mtsl.viewmodels.MovieViewModelFactory
 
+
 class SearchFragment : Fragment() {
 
     private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
-    private val movieViewModel: MovieViewModel by viewModels {
+    val movieViewModel: MovieViewModel by viewModels {
         MovieViewModelFactory(MovieRepository()) // Consider using DI (Hilt/Koin)
     }
     private lateinit var movieDao: MovieDao  // Add this
 
-    private lateinit var movieAdapter: MovieAdapter
+    lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +61,7 @@ class SearchFragment : Fragment() {
 //            adapter = movieAdapter
 //        }
 //    }
-private fun setupRecyclerView() {
+fun setupRecyclerView() {
     movieAdapter = MovieAdapter(
         mutableListOf(),
         onMovieClick = { movie ->
@@ -83,7 +84,7 @@ private fun setupRecyclerView() {
         )
     }
 
-    private fun observeMovies() {
+    fun observeMovies() {
         movieViewModel.movies.observe(viewLifecycleOwner) { movies ->
             if (movies.isNullOrEmpty()) {
                 binding.loadingText.text = "No movies found"

@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private lateinit var favoriteAdapter: FavoriteAdapter
     private lateinit var favoriteViewModel: FavoriteViewModel
 
@@ -55,7 +55,7 @@ class FavoritesFragment : Fragment() {
         binding.recyclerViewFavorites.adapter = favoriteAdapter
     }
 
-    private fun observeFavorites() {
+    fun observeFavorites() {
         favoriteViewModel.favoriteMovies.observe(viewLifecycleOwner) { movies ->
             val safeMovies = movies ?: emptyList()
             favoriteAdapter.updateMovies(safeMovies)
@@ -69,7 +69,7 @@ class FavoritesFragment : Fragment() {
         }
     }
 
-    private fun removeFavoriteMovie(movie: Movie) {
+    fun removeFavoriteMovie(movie: Movie) {
         CoroutineScope(Dispatchers.IO).launch {
             favoriteViewModel.removeFavorite(movie) // Call ViewModel function
         }

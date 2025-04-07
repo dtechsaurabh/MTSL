@@ -14,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MovieRepository {
+class MovieRepository() {
     fun getPopularMovies(): LiveData<List<Movie>> {
         val moviesLiveData = MutableLiveData<List<Movie>>()
 

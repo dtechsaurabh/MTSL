@@ -6,4 +6,6 @@ object ApiConstants {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val BASE_URL_TWO = "https://api.themoviedb.org/3/"
     const val BASE_URL_IMAGE= "https://image.tmdb.org/t/p/w500"
+    var BASE_URL_IMAGE2= "https://image.tmdb.org/t/p/w500"
+
 }

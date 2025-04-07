@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -117,6 +118,26 @@ dependencies {
     implementation(libs.javax.inject) // For @Inject annotation
     implementation(libs.androidx.cardview)
 
+
+    // Unit Testing
+//    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockwebserver)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.room.testing)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.kotlin)
+
+    // UI Testing (Espresso)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso.contrib)
+    androidTestImplementation(libs.espresso.intents)
+
+    testImplementation(libs.arch.core.testing)
+    testImplementation(kotlin("test"))
+    debugImplementation("androidx.fragment:fragment-testing:1.6.2")  //
+    testImplementation("org.robolectric:robolectric:4.10.3")
+    testImplementation("io.mockk:mockk:1.13.4")
 
 
 }

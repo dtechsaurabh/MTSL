@@ -6,12 +6,13 @@ class Myapp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        /*DbManager.init(this);*/
+        // Initialize required utilities
         SharedPreferenceUtils.init(this)
     }
 
     companion object {
-        var instance: Myapp? = null
+        @JvmStatic
+        lateinit var instance: Myapp
             private set
     }
 }

@@ -31,7 +31,7 @@ retrofit-coroutines-adapter = "0.9.2"
 activity = "1.10.0"
 constraintlayout = "2.2.0"
 
-hilt = "2.50"                # Update to the latest version if needed
+hilt = "2.50"
 
 rxjava = "3.1.8"
 rxandroid = "3.0.2"
@@ -41,7 +41,20 @@ javax-inject = "1"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
 
-ksp = "com.google.devtools.ksp:2.0.0-1.0.13"
+
+mockito-core = "5.2.0"
+mockito-inline = "5.2.0"
+mockito-kotlin = "4.1.0"
+mockwebserver = "4.9.3"
+
+
+coroutines-test = "1.6.0"
+androidx-room-testing = "2.4.2"
+espresso-contrib = "3.4.0"
+espresso-intents = "3.4.0"
+
+arch_core_testing = "2.2.0"
+junitKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -79,8 +92,6 @@ okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.
 retrofit-coroutines-adapter = { module = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter", version.ref = "retrofit-coroutines-adapter" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
@@ -90,6 +101,16 @@ androidx-cardview = { module = "androidx.cardview:cardview", version = "1.0.0" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
+mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserver" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-test" }
+room-testing = { module = "androidx.room:room-testing", version.ref = "androidx-room-testing" }
+espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso-contrib" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso-intents" }
+arch-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "arch_core_testing" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 
 [plugins]

@@ -37,7 +37,7 @@ object RetrofitProvider {
         .connectTimeout(20, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(AuthTokenInterceptor(Myapp.instance!!))
+        .addInterceptor(AuthTokenInterceptor(Myapp.instance))
         .addInterceptor(loggingInterceptor)
         .addInterceptor(authorizationInterceptor)
         .build()
